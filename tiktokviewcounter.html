@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TikTok Viewer Count</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="tokcount-iframe" src="https://tokcount.com/?user=tj_shizzle"></iframe>
+    <script>
+        const iframe = document.getElementById('tokcount-iframe');
+
+        iframe.onload = function() {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+            // Wait for the iframe to load the content
+            iframeDoc.addEventListener('DOMContentLoaded', function() {
+                // Try to find and click the consent button
+                const acceptButton = iframeDoc.querySelector('button[title="Consent"]');
+                if (acceptButton) {
+                    acceptButton.click();
+                }
+            });
+        };
+    </script>
+</body>
+</html>
